@@ -52,7 +52,7 @@ module.exports = mongoose.model('Student', studentSchema);
 
 ```
 
-## 2. controllers/studentController.js
+### 2. controllers/studentController.js
 ```js
 const Student = require('../models/Student');
 
@@ -110,7 +110,7 @@ exports.deleteStudent = async (req, res) => {
 };
 ```
 
-## 3. routes/studentRoutes.js
+### 3. routes/studentRoutes.js
 ```js
 const express = require('express');
 const router = express.Router();
@@ -125,8 +125,8 @@ router.delete('/:id', studentController.deleteStudent);
 module.exports = router;
 ```
 
-## 4. server.js
-'''js
+### 4. server.js
+```js
 const express = require('express');
 const mongoose = require('mongoose');
 const studentRoutes = require('./routes/studentRoutes');
@@ -149,8 +149,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/studentDB', { useNewUrlParser: true,
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
-'''
-## 5. package.json
+```
+### 5. package.json
 ```json
 {
   "name": "student-management",
@@ -171,3 +171,31 @@ app.listen(PORT, () => {
 
 ```
 
+## Commands to Run
+```cmd
+npm install
+mongod   # Make sure MongoDB server is running
+npm run dev   # Runs server with nodemon
+```
+
+## Test API Endpoints in Postman
+| Method | Endpoint         | Description               |
+|--------|------------------|---------------------------|
+| GET    | /students        | Get all students          |
+| GET    | /students/:id    | Get a student by ID       |
+| POST   | /students        | Add a new student         |
+| PUT    | /students/:id    | Update student by ID      |
+| DELETE | /students/:id    | Delete student by ID      |
+
+## SCREEN SHOT's
+### 1. Get All Students (GET)
+![get](res1.png)
+
+### 2. Add New Student (POST)
+![post](res2.png)
+
+### 3. Update Student (PUT)
+![put](res3.png)
+
+### 4. Delete Student (DELETE)
+![delete](res4.png)
