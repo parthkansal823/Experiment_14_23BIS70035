@@ -25,6 +25,16 @@ student-management/
 ├─ server.js
 └─ package.json
 ```
+## Intialization
+### 1. Initialize Node.js Project
+```cmd
+npm init -y
+```
+### 2. Install Dependencies
+```cmd
+npm install express mongoose
+npm install --save-dev nodemon
+```
 
 ## CODE
 
@@ -101,7 +111,7 @@ exports.deleteStudent = async (req, res) => {
 ```
 
 ## 3. routes/studentRoutes.js
-```
+```js
 const express = require('express');
 const router = express.Router();
 const studentController = require('../controllers/studentController');
@@ -160,3 +170,4 @@ app.listen(PORT, () => {
 }
 
 ```
+
