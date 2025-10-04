@@ -28,7 +28,7 @@ student-management/
 
 ## CODE
 
-### models/Student.js
+### 1. models/Student.js
 ```js
 const mongoose = require('mongoose');
 
@@ -42,7 +42,7 @@ module.exports = mongoose.model('Student', studentSchema);
 
 ```
 
-## controllers/studentController.js
+## 2. controllers/studentController.js
 ```js
 const Student = require('../models/Student');
 
@@ -100,4 +100,63 @@ exports.deleteStudent = async (req, res) => {
 };
 ```
 
-## routes/studentRoutes.js
+## 3. routes/studentRoutes.js
+```
+const express = require('express');
+const router = express.Router();
+const studentController = require('../controllers/studentController');
+
+router.get('/', studentController.getAllStudents);
+router.get('/:id', studentController.getStudentById);
+router.post('/', studentController.createStudent);
+router.put('/:id', studentController.updateStudent);
+router.delete('/:id', studentController.deleteStudent);
+
+module.exports = router;
+```
+
+## 4. server.js
+'''js
+const express = require('express');
+const mongoose = require('mongoose');
+const studentRoutes = require('./routes/studentRoutes');
+
+const app = express();
+const PORT = 3000;
+
+// Middleware
+app.use(express.json());
+
+// Routes
+app.use('/students', studentRoutes);
+
+// MongoDB Connection
+mongoose.connect('mongodb://127.0.0.1:27017/studentDB', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.log(err));
+
+// Start Server
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
+'''
+## 5. package.json
+```json
+{
+  "name": "student-management",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.3.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
+
+```
