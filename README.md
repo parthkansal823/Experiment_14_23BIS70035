@@ -199,3 +199,7 @@ npm run dev   # Runs server with nodemon
 
 ### 4. Delete Student (DELETE)
 ![delete](res4.png)
+
+<p align="center">
+    MADE by PARTH KANSAL 23BIS70035
+</p>
